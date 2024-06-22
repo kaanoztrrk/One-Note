@@ -41,9 +41,9 @@ class ViSizes {
   static const double spaceBtwSections = 32.0;
 
   //* Border Radius
-  static const double borderRadiusSm = 4.0;
-  static const double borderRadiusMd = 8.0;
-  static const double bordeRadiusLg = 12.0;
+  static const double borderRadiusSm = 10.0;
+  static const double borderRadiusMd = 15.0;
+  static const double borderRadiusLg = 20.0;
 
   //* Divider Heigth
   static const double dividerHeigth = 1.0;
