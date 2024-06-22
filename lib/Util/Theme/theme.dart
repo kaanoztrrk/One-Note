@@ -38,7 +38,7 @@ class ViAppTheme {
     fontFamily: 'Poppins',
     brightness: Brightness.dark,
     primaryColor: Colors.blue,
-    scaffoldBackgroundColor: AppColors.black,
+    scaffoldBackgroundColor: AppColors.ligth,
     textTheme: ViTextTheme.darkTextTheme,
     elevatedButtonTheme: ViElevatedButtonTheme.darkElevtedButtonTheme,
     appBarTheme: ViAppbarTheme.darkAppBarTheme,

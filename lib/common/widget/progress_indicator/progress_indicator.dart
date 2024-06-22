@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:one_note/Util/Constant/colors.dart';
 
 class ViCircularProgressIndicator extends StatelessWidget {
   final double value;
@@ -17,10 +18,10 @@ class ViCircularProgressIndicator extends StatelessWidget {
         painter: _CircularProgressPainter(value),
         child: Center(
           child: Text(
-            '${(value * 100).toInt()}%', // Display percentage
+            '${(value * 100).toInt()}%',
             style: TextStyle(
-              fontSize: size *
-                  0.2, // Adjusts the font size based on the size of the indicator
+              color: AppColors.black,
+              fontSize: size * 0.2,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -42,12 +43,12 @@ class _CircularProgressPainter extends CustomPainter {
     Offset center = Offset(size.width / 2, size.height / 2);
 
     Paint backgroundPaint = Paint()
-      ..color = Colors.grey
+      ..color = AppColors.grey
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
 
     Paint foregroundPaint = Paint()
-      ..color = Colors.red
+      ..color = AppColors.canceled
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;

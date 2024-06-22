@@ -5,9 +5,9 @@ part 'one_note_event.dart';
 part 'one_note_state.dart';
 
 class OneNoteBloc extends Bloc<OneNoteEvent, OneNoteState> {
-  OneNoteBloc() : super(OneNoteInitial()) {
-    on<OneNoteEvent>((event, emit) {
-      // TODO: implement event handler
+  OneNoteBloc() : super(const TabChangedState(0)) {
+    on<ChangeTab>((event, emit) {
+      emit(TabChangedState(event.tabIndex));
     });
   }
 }

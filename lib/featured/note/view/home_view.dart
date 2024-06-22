@@ -12,47 +12,53 @@ import 'package:one_note/featured/note/bloc/home_bloc.dart';
 
 import '../../../common/widget/appbar/appbar_action_buttons/action_button.dart';
 import '../../../common/widget/tile/vi_title.dart';
+import '../bloc/home_event.dart';
 import '../bloc/home_state.dart';
 import '../widget/profile_Image_chip.dart';
 import '../widget/progress_category_button.dart';
 import '../widget/recend_task_button.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _homeAppbar(),
-      body: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(ViSizes.defaultSpace),
-            child: Column(
-              children: [
-                ViGridLayout(
-                  mainAxisExtent: 90,
-                  itemCount: state.status.length,
-                  itemBuilder: (context, index) {
-                    return ViProgressCategoryButton(
-                      status: state.status[index],
-                    );
-                  },
-                ),
-                const SizedBox(height: ViSizes.spaceBtwSections),
-                const ViTitle(title: ViTexts.recendTask),
-                Expanded(
-                  child: ViListLayout(
-                    itemCount: 10,
+    return BlocProvider(
+      create: (context) => HomeBloc()..add(LoadProgressStatuses()),
+      child: Scaffold(
+        appBar: _homeAppbar(),
+        body: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            return Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: ViSizes.defaultSpace) +
+                      EdgeInsets.only(top: ViSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ViGridLayout(
+                    mainAxisExtent: 90,
+                    itemCount: state.status.length,
                     itemBuilder: (context, index) {
-                      return const RecendTaskButton();
+                      return ViProgressCategoryButton(
+                        status: state.status[index],
+                      );
                     },
                   ),
-                ),
-              ],
-            ),
-          );
-        },
+                  const SizedBox(height: ViSizes.spaceBtwSections / 2),
+                  const ViTitle(title: ViTexts.recendTask),
+                  Expanded(
+                    child: ViListLayout(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return const RecendTaskButton();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }

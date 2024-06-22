@@ -12,7 +12,7 @@ class RecendTaskButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViContainer(
-      height: 120,
+      heigth: 120,
       margin: const EdgeInsets.only(top: ViSizes.md),
       padding: const EdgeInsets.all(ViSizes.md),
       child: Row(
@@ -33,7 +33,10 @@ class RecendTaskButton extends StatelessWidget {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Icon(Icons.expand_circle_down_rounded),
+                  const Icon(
+                    Icons.done_sharp,
+                    color: AppColors.black,
+                  ),
                   const SizedBox(width: 5),
                   Text(
                     "12 Tasks",

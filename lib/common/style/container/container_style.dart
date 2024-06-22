@@ -8,23 +8,27 @@ class ViContainer extends StatelessWidget {
   const ViContainer({
     super.key,
     this.child,
-    this.height = 100,
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
+    this.heigth = 100.0,
+    this.onTap,
   });
 
   final Widget? child;
+  final double? heigth;
+  final Function()? onTap;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
-  final double? height;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      padding: padding,
-      height: height,
-      decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: heigth,
+        margin: margin,
+        padding: padding,
+        decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(
             ViSizes.borderRadiusLg,
@@ -35,8 +39,14 @@ class ViContainer extends StatelessWidget {
               offset: Offset(0, 3),
               color: AppColors.black,
             )
-          ]),
-      child: child,
+          ],
+        ),
+        child: child != null
+            ? IntrinsicHeight(
+                child: child,
+              )
+            : null,
+      ),
     );
   }
 }

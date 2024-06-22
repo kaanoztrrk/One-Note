@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/Util/Constant/sizes.dart';
+import 'package:one_note/Util/Device/device_utility.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 import 'package:one_note/featured/note/bloc/home_bloc.dart';
 
@@ -15,22 +16,30 @@ class ViProgressCategoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 100,
+      width: ViDeviceUtils.getScreenWidth(context) * 0.3,
+      height: ViDeviceUtils.getScreenHeigth(context) * 0.3,
       decoration: BoxDecoration(
         color: getProgressColor(status),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: ViSizes.md),
+        padding: EdgeInsets.symmetric(
+            horizontal: ViDeviceUtils.getScreenWidth(context) * 0.02),
         child: Row(
           children: [
-            Icon(
-              getProgressIconData(status),
-              size: ViSizes.iconLg,
-              color: AppColors.ligth,
+            Container(
+              width: ViDeviceUtils.getScreenWidth(context) * 0.125,
+              height: ViDeviceUtils.getScreenHeigth(context) * 0.125,
+              decoration: BoxDecoration(
+                  color: AppColors.dark.withOpacity(0.2),
+                  shape: BoxShape.circle),
+              child: Icon(
+                getProgressIconData(status),
+                size: ViDeviceUtils.getScreenWidth(context) * 0.08,
+                color: AppColors.ligth,
+              ),
             ),
-            SizedBox(width: 10),
+            SizedBox(width: ViDeviceUtils.getScreenWidth(context) * 0.03),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +51,7 @@ class ViProgressCategoryButton extends StatelessWidget {
                 ),
                 Text(
                   "12 Tasks",
-                  style: ViTextTheme.ligthTextTheme.titleSmall,
+                  style: ViTextTheme.ligthTextTheme.labelSmall,
                   textAlign: TextAlign.center,
                 ),
               ],
