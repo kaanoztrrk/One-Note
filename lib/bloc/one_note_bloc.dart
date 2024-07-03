@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 part 'one_note_event.dart';
 part 'one_note_state.dart';
 

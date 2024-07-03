@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 
 class ViTitle extends StatelessWidget {
   const ViTitle(
       {super.key,
       required this.title,
-      this.showAll,
+      this.widget,
       this.onTap,
-      this.bigFont = false});
+      this.isBigFont = false,
+      this.style,
+      this.buttonText});
 
   final String title;
-  final bool? showAll;
+  final bool? widget;
   final Function()? onTap;
-  final bool? bigFont;
+  final bool? isBigFont;
+  final TextStyle? style;
+  final String? buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +25,24 @@ class ViTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: bigFont == true
-              ? ViTextTheme.ligthTextTheme.headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.w500)
-              : ViTextTheme.ligthTextTheme.headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.w500),
+          style: style ??
+              (isBigFont == true
+                  ? ViTextTheme.ligthTextTheme.headlineLarge
+                      ?.copyWith(fontWeight: FontWeight.w500)
+                  : ViTextTheme.ligthTextTheme.headlineSmall
+                      ?.copyWith(fontWeight: FontWeight.w500)),
         ),
-        Spacer(),
-        showAll == true
+        const Spacer(),
+        widget == true
             ? GestureDetector(
                 onTap: onTap,
                 child: Text(
-                  "See All",
-                  style: ViTextTheme.ligthTextTheme.titleLarge
-                      ?.copyWith(fontWeight: FontWeight.w500),
+                  buttonText ?? "",
+                  style: ViTextTheme.ligthTextTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w500, color: AppColors.primary),
                 ),
               )
-            : Text(""),
+            : const Text(""),
       ],
     );
   }

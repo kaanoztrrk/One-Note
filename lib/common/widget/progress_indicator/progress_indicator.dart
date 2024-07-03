@@ -7,11 +7,12 @@ class ViCircularProgressIndicator extends StatelessWidget {
   final double value;
   final double size;
 
-  ViCircularProgressIndicator({required this.value, required this.size});
+  const ViCircularProgressIndicator(
+      {super.key, required this.value, required this.size});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: size,
       height: size,
       child: CustomPaint(

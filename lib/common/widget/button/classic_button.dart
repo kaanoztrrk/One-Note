@@ -4,24 +4,29 @@ import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 
 class ViClassicButton extends StatelessWidget {
-  const ViClassicButton({super.key, this.heigth = 100, required this.title});
+  const ViClassicButton(
+      {super.key, this.heigth = 100, required this.title, this.onTap});
 
   final double? heigth;
   final String title;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      width: double.infinity,
-      height: heigth,
-      decoration: BoxDecoration(
-          color: AppColors.primary,
-          borderRadius: BorderRadius.circular(ViSizes.borderRadiusMd)),
-      child: Text(
-        title,
-        style: ViTextTheme.ligthTextTheme.titleLarge
-            ?.apply(color: AppColors.ligth),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        alignment: Alignment.center,
+        width: double.infinity,
+        height: heigth,
+        decoration: BoxDecoration(
+            color: AppColors.primary,
+            borderRadius: BorderRadius.circular(ViSizes.borderRadiusMd)),
+        child: Text(
+          title,
+          style: ViTextTheme.ligthTextTheme.titleLarge
+              ?.apply(color: AppColors.ligth),
+        ),
       ),
     );
   }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "993602598454",
+    "project_id": "onenote-39432",
+    "storage_bucket": "onenote-39432.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993602598454:android:6700f5a2face962d110a97",
+        "android_client_info": {
+          "package_name": "com.example.one_note"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxFc6yIPr47tdW_go8vjpCGLWFXB5sRWM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

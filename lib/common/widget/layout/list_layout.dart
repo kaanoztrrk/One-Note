@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../Util/Constant/sizes.dart';
-
 class ViListLayout extends StatelessWidget {
   const ViListLayout({
     super.key,
@@ -17,6 +15,7 @@ class ViListLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: itemCount,
       shrinkWrap: true,
       padding: EdgeInsets.zero,

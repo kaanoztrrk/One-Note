@@ -5,17 +5,18 @@ import 'package:iconsax/iconsax.dart';
 import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/core/routes/routes.dart';
-import 'package:one_note/featured/note/view/home_view.dart';
+import 'package:one_note/featured/note/view/home/home_view.dart';
 
 import '../../../bloc/one_note_bloc.dart';
+import 'todo_task_view/todo_task_view.dart';
 
 class MainView extends StatelessWidget {
-  MainView({super.key});
+  const MainView({super.key});
 
-  final List<Widget> _pages = [
+  final List<Widget> _pages = const [
     HomeView(),
     Center(child: Text('Tasks Page')),
-    Center(child: Text('Settings Page')),
+    TodoTaskView(),
     Center(child: Text('Profile Page')),
   ];
 
@@ -43,7 +44,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BlocBuilder<OneNoteBloc, OneNoteState>(
       builder: (context, state) {
         return Container(
-          margin: EdgeInsets.only(bottom: ViSizes.sm, top: ViSizes.sm),
+          margin: const EdgeInsets.only(bottom: ViSizes.sm, top: ViSizes.sm),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,7 +63,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   context.read<OneNoteBloc>().add(const ChangeTab(1));
                 },
               ),
-              Container(
+              SizedBox(
                 height: 56.0,
                 width: 56.0,
                 child: FloatingActionButton(

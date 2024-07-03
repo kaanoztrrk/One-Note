@@ -12,6 +12,7 @@ class ViContainer extends StatelessWidget {
     this.margin = EdgeInsets.zero,
     this.heigth = 100.0,
     this.onTap,
+    this.bgColor,
   });
 
   final Widget? child;
@@ -19,6 +20,7 @@ class ViContainer extends StatelessWidget {
   final Function()? onTap;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final Color? bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ViContainer extends StatelessWidget {
         margin: margin,
         padding: padding,
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: bgColor ?? AppColors.textWhite,
           borderRadius: BorderRadius.circular(
             ViSizes.borderRadiusLg,
           ),

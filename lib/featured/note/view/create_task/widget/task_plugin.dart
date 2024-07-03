@@ -9,9 +9,9 @@ class ViTaskPluginWidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        IconButton(onPressed: () {}, icon: Icon(Iconsax.element_equal)),
-        IconButton(onPressed: () {}, icon: Icon(Iconsax.text)),
-        IconButton(onPressed: () {}, icon: Icon(Iconsax.paperclip))
+        IconButton(onPressed: () {}, icon: const Icon(Iconsax.element_equal)),
+        IconButton(onPressed: () {}, icon: const Icon(Iconsax.text)),
+        IconButton(onPressed: () {}, icon: const Icon(Iconsax.paperclip))
       ],
     );
   }

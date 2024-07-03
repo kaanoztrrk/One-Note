@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 import 'package:one_note/common/style/container/container_style.dart';
 import 'package:one_note/common/widget/progress_indicator/progress_indicator.dart';
-import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
+import 'package:one_note/core/routes/routes.dart';
 
 class RecendTaskButton extends StatelessWidget {
-  const RecendTaskButton({super.key});
+  const RecendTaskButton({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return ViContainer(
+      onTap: () => context.push(Routes.task_detail),
       heigth: 120,
       margin: const EdgeInsets.only(top: ViSizes.md),
       padding: const EdgeInsets.all(ViSizes.md),
@@ -23,11 +27,11 @@ class RecendTaskButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "Web site For Theviacoder",
+                "title",
                 style: ViTextTheme.ligthTextTheme.headlineSmall,
               ),
               Text(
-                "Digital Product Design",
+                "subTitle",
                 style: ViTextTheme.ligthTextTheme.bodyLarge,
               ),
               const SizedBox(height: 10),
@@ -39,7 +43,7 @@ class RecendTaskButton extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    "12 Tasks",
+                    "tasks",
                     style: ViTextTheme.ligthTextTheme.titleSmall
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
@@ -47,8 +51,8 @@ class RecendTaskButton extends StatelessWidget {
               )
             ],
           ),
-          ViCircularProgressIndicator(
-            value: 0.1,
+          const ViCircularProgressIndicator(
+            value: 0.0,
             size: 80,
           )
         ],

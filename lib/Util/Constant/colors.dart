@@ -13,6 +13,17 @@ class AppColors {
   static const Color ongoing = Color(0xFF5694F2);
   static const Color canceled = Color(0xFFF26E56);
 
+  static const Color turquoise = Color(0xFF53C2C5);
+  static const Color lemon = Color(0xFFFEC347);
+  static const Color blue = Color(0xFF5694F2);
+  static const Color coral = Color(0xFFF26E56);
+  static const Color purple = Color(0xFF7E57C2);
+  static const Color orange = Color(0xFFFF9800);
+  static const Color green = Color(0xFF4CAF50);
+  static const Color indigo = Color(0xFF2196F3);
+  static const Color deepOrange = Color(0xFFFF5722);
+  static const Color brown = Color(0xFF795548);
+
 /*
   / Graident Colors
   static const Gradient linergradient = LinearGradient(

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:one_note/Util/Constant/colors.dart';
-import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/Util/Device/device_utility.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
-import 'package:one_note/featured/note/bloc/home_bloc.dart';
 
-import '../../../Util/Constant/enums.dart';
+import '../../../../../Util/Constant/enums.dart';
 
 class ViProgressCategoryButton extends StatelessWidget {
   final ProgressStatus status;

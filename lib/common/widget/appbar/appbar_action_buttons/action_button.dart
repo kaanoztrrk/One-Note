@@ -14,7 +14,7 @@ class AppBarActionButton extends StatelessWidget {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-          color: Color(0xffEDEDED),
+          color: const Color(0xffEDEDED),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Icon(icon),

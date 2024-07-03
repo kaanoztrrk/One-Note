@@ -8,15 +8,15 @@ import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 import 'package:one_note/common/widget/appbar/appbar.dart';
 import 'package:one_note/common/widget/layout/grid_layout.dart';
 import 'package:one_note/common/widget/layout/list_layout.dart';
-import 'package:one_note/featured/note/bloc/home_bloc.dart';
+import 'package:one_note/featured/note/blocs/home_bloc/home_bloc.dart';
 
-import '../../../common/widget/appbar/appbar_action_buttons/action_button.dart';
-import '../../../common/widget/tile/vi_title.dart';
-import '../bloc/home_event.dart';
-import '../bloc/home_state.dart';
-import '../widget/profile_Image_chip.dart';
-import '../widget/progress_category_button.dart';
-import '../widget/recend_task_button.dart';
+import '../../../../common/widget/appbar/appbar_action_buttons/action_button.dart';
+import '../../../../common/widget/tile/vi_title.dart';
+import '../../blocs/home_bloc/home_event.dart';
+import '../../blocs/home_bloc/home_state.dart';
+import 'widget/profile_Image_chip.dart';
+import 'widget/progress_category_button.dart';
+import 'widget/recend_task_button.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
             return Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: ViSizes.defaultSpace) +
-                      EdgeInsets.only(top: ViSizes.defaultSpace),
+                      const EdgeInsets.only(top: ViSizes.defaultSpace),
               child: Column(
                 children: [
                   ViGridLayout(
@@ -48,7 +48,7 @@ class HomeView extends StatelessWidget {
                   const ViTitle(title: ViTexts.recendTask),
                   Expanded(
                     child: ViListLayout(
-                      itemCount: 10,
+                      itemCount: 2,
                       itemBuilder: (context, index) {
                         return const RecendTaskButton();
                       },

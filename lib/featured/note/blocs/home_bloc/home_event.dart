@@ -7,4 +7,12 @@ abstract class HomeEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class GetCategoryEvent extends HomeEvent {
+  const GetCategoryEvent();
+}
+
+class LoadTasksEvent extends HomeEvent {}
+
 class LoadProgressStatuses extends HomeEvent {}
+
+class ToggleSwitchCreateTaskView extends HomeEvent {}
