@@ -67,11 +67,11 @@ class CustomToggleSwitch extends StatefulWidget {
   final bool showCategory;
 
   const CustomToggleSwitch({
-    super.key,
+    Key? key,
     required this.onChanged,
     this.initialIndex = 0,
     this.showCategory = true,
-  });
+  }) : super(key: key);
 
   @override
   _CustomToggleSwitchState createState() => _CustomToggleSwitchState();
@@ -107,12 +107,11 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
           color: _currentIndex == 0 ? Colors.white : AppColors.buttonPrimary,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
               child: Center(
                 child: Text(
-                  widget.showCategory && _currentIndex == 0 ? 'Category' : '',
+                  widget.showCategory && _currentIndex == 0 ? 'Tasks' : '',
                   style: TextStyle(
                     color: _currentIndex == 0 ? Colors.black : Colors.white,
                     fontWeight: FontWeight.bold,
@@ -120,16 +119,19 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
                 ),
               ),
             ),
+            Container(
+              width: 2.0,
+              color: Colors.black,
+            ),
             Expanded(
               child: Center(
-                child: Text(
-                  'To-Do',
-                  style: TextStyle(
-                    color: _currentIndex == 1 ? Colors.black : Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  child: Text(
+                'To-Do',
+                style: TextStyle(
+                  color: _currentIndex == 1 ? Colors.black : Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-              ),
+              )),
             ),
           ],
         ),

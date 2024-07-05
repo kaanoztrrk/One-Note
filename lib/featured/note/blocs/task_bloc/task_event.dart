@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/task_model/task_model.dart';
+
 abstract class TaskEvent extends Equatable {
   const TaskEvent();
 
@@ -21,4 +23,20 @@ class CreateToDoEvent extends TaskEvent {
 class ChangeCheckBoxEvent extends TaskEvent {
   final bool isChecked;
   const ChangeCheckBoxEvent({required this.isChecked});
+}
+
+class CreateCategoryEvent extends TaskEvent {
+  final String title;
+  final String subTitle;
+  final List<Task> checkList;
+  final List<String> tagList;
+  final double isComplated;
+
+  const CreateCategoryEvent({
+    required this.title,
+    required this.subTitle,
+    required this.checkList,
+    required this.isComplated,
+    required this.tagList,
+  });
 }

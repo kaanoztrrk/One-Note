@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Util/Constant/enums.dart';
+import '../../model/category_model/category_model.dart';
 import 'home_event.dart';
 import 'home_state.dart';
 

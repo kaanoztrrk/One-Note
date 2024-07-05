@@ -47,6 +47,7 @@ class _RecendToDoTaskButtonState extends State<RecendToDoTaskButton> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
         children: [
+          /*
           Checkbox(
             value: widget.isCheck,
             onChanged: widget.onChanged,
@@ -56,6 +57,7 @@ class _RecendToDoTaskButtonState extends State<RecendToDoTaskButton> {
             activeColor: AppColors.info,
             checkColor: AppColors.white,
           ),
+        */
           const SizedBox(width: 10),
           Expanded(
             child: LayoutBuilder(

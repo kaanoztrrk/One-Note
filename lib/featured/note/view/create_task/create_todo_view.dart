@@ -55,13 +55,12 @@ class _CreateToDoTaskViewState extends State<CreateToDoTaskView> {
                         border: InputBorder.none,
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
-                        hintText: "Task Title",
+                        hintText: "I Task Title",
                         hintStyle: ViTextTheme.ligthTextTheme.titleMedium
                             ?.copyWith(color: AppColors.darkerGrey),
                       ),
                     ),
                   ),
-                  const SizedBox(height: ViSizes.spaceBtwItems),
                   const SizedBox(height: ViSizes.spaceBtwItems),
                   ViContainer(
                     heigth: 150,

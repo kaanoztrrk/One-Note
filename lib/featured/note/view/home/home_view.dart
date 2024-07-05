@@ -6,14 +6,18 @@ import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/Util/Constant/text_strings.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 import 'package:one_note/common/widget/appbar/appbar.dart';
+import 'package:one_note/common/widget/empty_screen/empty_screen.dart';
 import 'package:one_note/common/widget/layout/grid_layout.dart';
 import 'package:one_note/common/widget/layout/list_layout.dart';
+import 'package:one_note/core/locator/locator.dart';
 import 'package:one_note/featured/note/blocs/home_bloc/home_bloc.dart';
 
 import '../../../../common/widget/appbar/appbar_action_buttons/action_button.dart';
 import '../../../../common/widget/tile/vi_title.dart';
 import '../../blocs/home_bloc/home_event.dart';
 import '../../blocs/home_bloc/home_state.dart';
+import '../../blocs/task_bloc/task_bloc.dart';
+import '../../blocs/task_bloc/task_state.dart';
 import 'widget/profile_Image_chip.dart';
 import 'widget/progress_category_button.dart';
 import 'widget/recend_task_button.dart';
@@ -23,19 +27,26 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc()..add(LoadProgressStatuses()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBloc>(
+          create: (context) => HomeBloc()..add(LoadProgressStatuses()),
+        ),
+        BlocProvider.value(
+          value: getIt<TaskBloc>(),
+        ),
+      ],
       child: Scaffold(
         appBar: _homeAppbar(),
-        body: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: ViSizes.defaultSpace) +
-                      const EdgeInsets.only(top: ViSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ViGridLayout(
+        body: Padding(
+          padding:
+              const EdgeInsets.symmetric(horizontal: ViSizes.defaultSpace) +
+                  const EdgeInsets.only(top: ViSizes.defaultSpace),
+          child: Column(
+            children: [
+              BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  return ViGridLayout(
                     mainAxisExtent: 90,
                     itemCount: state.status.length,
                     itemBuilder: (context, index) {
@@ -43,21 +54,38 @@ class HomeView extends StatelessWidget {
                         status: state.status[index],
                       );
                     },
-                  ),
-                  const SizedBox(height: ViSizes.spaceBtwSections / 2),
-                  const ViTitle(title: ViTexts.recendTask),
-                  Expanded(
+                  );
+                },
+              ),
+              const SizedBox(height: ViSizes.spaceBtwSections / 2),
+              const ViTitle(title: ViTexts.recendTask),
+              BlocBuilder<TaskBloc, TaskState>(
+                builder: (context, state) {
+                  if (state.categoryList.isEmpty) {
+                    return const ViEmptyScreen();
+                  }
+
+                  return Expanded(
                     child: ViListLayout(
-                      itemCount: 2,
+                      itemCount: state.categoryList.length,
                       itemBuilder: (context, index) {
-                        return const RecendTaskButton();
+                        var category = state.categoryList[index];
+
+                        return RecendTaskButton(
+                          title: category.title,
+                          subTitle: category.subTitle,
+                          checkList: category.checkList,
+                          isComplatedValue: category.isCompletedValue,
+                          category: category,
+                          tagList: category.tagList,
+                        );
                       },
                     ),
-                  ),
-                ],
-              ),
-            );
-          },
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

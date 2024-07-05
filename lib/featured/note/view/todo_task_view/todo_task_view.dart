@@ -30,7 +30,9 @@ class TodoTaskView extends StatelessWidget {
           child: BlocBuilder<TaskBloc, TaskState>(
             builder: (context, state) {
               if (state.todoList.isEmpty) {
-                return const ViEmptyScreen();
+                return ViEmptyScreen(
+                  spacer: true,
+                );
               }
               return ViListLayout(
                 itemCount: state.todoList.length,

@@ -1,10 +1,9 @@
 import 'package:equatable/equatable.dart';
-
+import '../../model/category_model/category_model.dart';
 import '../../../../Util/Constant/enums.dart';
 
 class HomeState extends Equatable {
   final List<ProgressStatus> status;
-
   final bool switchCreateTaskView;
 
   const HomeState({
@@ -13,8 +12,8 @@ class HomeState extends Equatable {
   });
 
   factory HomeState.initial() {
-    return const HomeState(
-      status: [],
+    return HomeState(
+      status: const [],
       switchCreateTaskView: false,
     );
   }
@@ -30,8 +29,5 @@ class HomeState extends Equatable {
   }
 
   @override
-  List<Object> get props => [
-        status,
-        switchCreateTaskView,
-      ];
+  List<Object?> get props => [status, switchCreateTaskView];
 }

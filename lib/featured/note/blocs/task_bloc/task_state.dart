@@ -5,14 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/featured/note/model/task_model/task_model.dart';
 
+import '../../model/category_model/category_model.dart';
+
 class TaskState extends Equatable {
   List<Task> todoList;
   Color? taskBgColor;
   final List<Color> taskColorList;
+  final List<CategoryModel> categoryList;
   bool isChecked;
 
   TaskState(
-      {required this.todoList,
+      {required this.categoryList,
+      required this.todoList,
       required this.isChecked,
       required this.taskColorList,
       required this.taskBgColor});
@@ -23,6 +27,7 @@ class TaskState extends Equatable {
       todoList: const [],
       taskColorList: const [],
       taskBgColor: AppColors.textWhite,
+      categoryList: [],
     );
   }
 
@@ -31,19 +36,17 @@ class TaskState extends Equatable {
     List<Task>? todoList,
     List<Color>? taskColorList,
     Color? taskBgColor,
+    List<CategoryModel>? categoryList,
   }) {
     return TaskState(
         isChecked: isChecked ?? this.isChecked,
         todoList: todoList ?? this.todoList,
         taskColorList: taskColorList ?? this.taskColorList,
-        taskBgColor: taskBgColor ?? this.taskBgColor);
+        taskBgColor: taskBgColor ?? this.taskBgColor,
+        categoryList: categoryList ?? this.categoryList);
   }
 
   @override
-  List<Object?> get props => [
-        isChecked,
-        todoList,
-        taskColorList,
-        taskBgColor,
-      ];
+  List<Object?> get props =>
+      [isChecked, todoList, taskColorList, taskBgColor, categoryList];
 }
