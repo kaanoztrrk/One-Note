@@ -102,4 +102,6 @@ class ViDeviceUtils {
       throw 'Could not launch $url';
     }
   }
+
+  static getScreenHeight(BuildContext context) {}
 }

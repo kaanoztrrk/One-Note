@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:one_note/core/routes/routes.dart';
-import 'package:one_note/featured/note/blocs/home_bloc/home_bloc.dart';
-import 'package:one_note/featured/note/model/category_model/category_model.dart';
-import 'package:one_note/featured/note/view/create_task/create_task_main_view.dart';
-import 'package:one_note/featured/note/view/main_view.dart';
-import 'package:one_note/featured/note/view/task_detail/task_detail_view.dart';
+import 'package:one_note/blocs/home_bloc/home_bloc.dart';
+import 'package:one_note/model/category_model/category_model.dart';
+import 'package:one_note/view/create_task/create_task_main_view.dart';
+import 'package:one_note/view/main_view.dart';
+import 'package:one_note/view/task_detail/task_detail_view.dart';
 
-import '../../bloc/one_note_bloc.dart';
-import '../../featured/note/blocs/home_bloc/home_event.dart';
-import '../../featured/note/blocs/task_bloc/task_bloc.dart';
-import '../../featured/note/view/home/home_view.dart';
+import '../../blocs/bloc/one_note_bloc.dart';
+import '../../blocs/home_bloc/home_event.dart';
+import '../../blocs/task_bloc/task_bloc.dart';
+import '../../view/home/home_view.dart';
+import '../locator/locator.dart';
 
 final GoRouter router = GoRouter(
   routes: [
@@ -20,15 +21,15 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
           create: (context) => OneNoteBloc(),
-          child: const MainView(),
+          child: MainView(),
         );
       },
     ),
     GoRoute(
       path: Routes.home,
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => HomeBloc()..add(LoadProgressStatuses()),
+        return BlocProvider.value(
+          value: getIt<HomeBloc>(),
           child: const HomeView(),
         );
       },
@@ -36,8 +37,8 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: Routes.create_task,
       builder: (BuildContext context, GoRouterState state) {
-        return BlocProvider(
-          create: (context) => HomeBloc(),
+        return BlocProvider.value(
+          value: getIt<HomeBloc>(),
           child: const CreateTaskMainView(),
         );
       },
@@ -47,7 +48,7 @@ final GoRouter router = GoRouter(
       builder: (BuildContext context, GoRouterState state) {
         final category = state.extra as CategoryModel;
         return BlocProvider(
-          create: (context) => TaskBloc(),
+          create: (context) => getIt<HomeBloc>(),
           child: TaskDetailView(category: category),
         );
       },

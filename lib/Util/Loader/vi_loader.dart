@@ -6,10 +6,11 @@ import '../Constant/colors.dart';
 import '../Helpers/helpers_functions.dart';
 
 class ViLoaders {
-  static hideSnackBar(BuildContext context) =>
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  static void hideSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
 
-  static customToast(BuildContext context, {required message}) {
+  static void customToast(BuildContext context, {required String message}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         elevation: 0,
@@ -25,14 +26,21 @@ class ViLoaders {
                 : AppColors.grey.withOpacity(0.9),
           ),
           child: Center(
-              child:
-                  Text(message, style: Theme.of(context).textTheme.labelLarge)),
+            child: Text(
+              message,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  static successSnacBar({required title, message = "", duration = 3}) {
+  static void successSnackBar(
+      {required String title, String message = "", int duration = 3}) {
     Get.snackbar(
       title,
       message,
@@ -47,7 +55,7 @@ class ViLoaders {
     );
   }
 
-  static warningSnacBar({required title, message = ""}) {
+  static void warningSnackBar({required String title, String message = ""}) {
     Get.snackbar(
       title,
       message,
@@ -62,7 +70,7 @@ class ViLoaders {
     );
   }
 
-  static errorSnacBar({required title, message = ""}) {
+  static void errorSnackBar({required String title, String message = ""}) {
     Get.snackbar(
       title,
       message,
