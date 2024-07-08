@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:iconsax/iconsax.dart';
@@ -7,7 +5,7 @@ import 'package:one_note/Util/Constant/colors.dart';
 import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 
-import '../../style/container/container_style.dart';
+import '../../style/container_style.dart';
 
 class RecendToDoTaskButton extends StatefulWidget {
   final String text;
@@ -18,6 +16,9 @@ class RecendToDoTaskButton extends StatefulWidget {
   final Function(bool?)? onChanged;
   final VoidCallback? onDelete;
   final VoidCallback? onEdit;
+  final VoidCallback? onDone;
+  final bool? disableCheckBox;
+  final bool? doneActionButton;
 
   const RecendToDoTaskButton({
     super.key,
@@ -29,6 +30,9 @@ class RecendToDoTaskButton extends StatefulWidget {
     this.onChanged,
     this.onDelete,
     this.onEdit,
+    this.onDone,
+    this.disableCheckBox = false,
+    this.doneActionButton = false,
   });
 
   @override
@@ -42,6 +46,14 @@ class _RecendToDoTaskButtonState extends State<RecendToDoTaskButton> {
     return baseHeight + textLengthFactor;
   }
 
+  bool _isChecked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isChecked = widget.initialChecked;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -49,42 +61,54 @@ class _RecendToDoTaskButtonState extends State<RecendToDoTaskButton> {
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
         children: [
+          if (widget.doneActionButton == true)
+            SlidableAction(
+              onPressed: (context) {
+                widget.onDone?.call();
+                setState(() {
+                  _isChecked = true;
+                });
+              },
+              backgroundColor: Colors.transparent,
+              foregroundColor: AppColors.success,
+              icon: Icons.check,
+            ),
           SlidableAction(
             onPressed: (context) => widget.onEdit?.call(),
-            backgroundColor: AppColors.primaryBackground,
+            backgroundColor: Colors.transparent,
             foregroundColor: AppColors.warning,
             icon: Icons.edit,
-            label: 'Edit',
           ),
           SlidableAction(
             onPressed: (context) => widget.onDelete?.call(),
-            backgroundColor: AppColors.primaryBackground,
+            backgroundColor: Colors.transparent,
             foregroundColor: AppColors.error,
             icon: Icons.delete,
-            label: 'Delete',
           ),
         ],
       ),
       child: ViContainer(
         heigth: calculateHeight(widget.text),
-        bgColor: widget.bgColor ?? AppColors.white,
+        bgColor:
+            _isChecked ? AppColors.softGrey : widget.bgColor ?? AppColors.white,
         margin: const EdgeInsets.only(top: ViSizes.md),
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
-            Checkbox(
-              value: widget.isCheck,
-              onChanged: (isChecked) {
-                // Dışarıdan gelen onChanged fonksiyonunu çağırarak dönüşüm sağlıyoruz
-                widget.onChanged?.call(isChecked);
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
+            if (widget.disableCheckBox != true) ...[
+              Checkbox(
+                value: widget.isCheck,
+                onChanged: (isChecked) {
+                  widget.onChanged?.call(isChecked);
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                ),
+                activeColor: AppColors.info,
+                checkColor: AppColors.white,
               ),
-              activeColor: AppColors.info,
-              checkColor: AppColors.white,
-            ),
-            const SizedBox(width: 10),
+              const SizedBox(width: 10),
+            ],
             Expanded(
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -93,7 +117,7 @@ class _RecendToDoTaskButtonState extends State<RecendToDoTaskButton> {
                     style: ViTextTheme.ligthTextTheme.titleLarge?.copyWith(
                       fontSize: constraints.maxWidth * 0.05,
                       color: AppColors.textSecondary,
-                      decoration: widget.isCheck == true
+                      decoration: _isChecked
                           ? TextDecoration.lineThrough
                           : TextDecoration.none,
                     ),

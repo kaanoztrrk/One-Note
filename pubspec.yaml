@@ -57,6 +57,8 @@ dependencies:
   toggle_switch: ^2.3.0
   bloc: ^8.1.4
   flutter_slidable: ^3.1.0
+  confetti: ^0.7.0
+  firebase_auth: ^5.1.1
 
 dev_dependencies:
   flutter_test:
@@ -89,7 +91,6 @@ flutter:
      - assets/
      - assets/icon/
      - assets/image/
-     - assets/image/logo/
      - assets/image/splash/
   #   - images/a_dot_ham.jpeg
 

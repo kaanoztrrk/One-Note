@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -24,10 +25,11 @@ class NetworkManager extends GetxController {
         as StreamSubscription<ConnectivityResult>;
   }
 
-  Future<void> _updateConectionStatus(ConnectivityResult result) async {
+  Future<void> _updateConectionStatus(
+      BuildContext context, ConnectivityResult result) async {
     _connectionStatus.value = result;
     if (_connectionStatus.value == ConnectivityResult.none) {
-      ViLoaders.warningSnackBar(title: 'No Internet Connection');
+      ViLoaders().showWarningMessage(context, "No Internet Connection");
     }
   }
 

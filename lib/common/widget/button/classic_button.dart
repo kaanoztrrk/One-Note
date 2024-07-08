@@ -5,11 +5,16 @@ import 'package:one_note/Util/Theme/Custom_Themes.dart/text_theme.dart';
 
 class ViClassicButton extends StatelessWidget {
   const ViClassicButton(
-      {super.key, this.heigth = 100, required this.title, this.onTap});
+      {super.key,
+      this.heigth = 100,
+      required this.title,
+      this.onTap,
+      this.bgColor});
 
   final double? heigth;
   final String title;
   final Function()? onTap;
+  final Color? bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class ViClassicButton extends StatelessWidget {
         width: double.infinity,
         height: heigth,
         decoration: BoxDecoration(
-            color: AppColors.primary,
+            color: bgColor ?? AppColors.primary,
             borderRadius: BorderRadius.circular(ViSizes.borderRadiusMd)),
         child: Text(
           title,

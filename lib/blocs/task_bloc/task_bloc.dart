@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:hive/hive.dart';
-import 'package:one_note/model/task_model/task_model.dart';
+import 'package:one_note/data/src/model/task_model/task_model.dart';
 import 'task_event.dart';
 import 'task_state.dart';
 
@@ -13,6 +13,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<DeleteToDoEvent>(_deleteTask);
     on<UpdateToDoEvent>(_updateTask);
     on<LoadTasksEvent>(_loadTasks);
+    on<SearchTasksEvent>(_searchTasks);
 
     // Başlangıçta görevleri ve kategorileri yükle
     add(LoadTasksEvent());
@@ -27,7 +28,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     );
 
     newTodoList.add(newTask);
-    taskBox.add(newTask); // Görevi Hive'a kaydet
+    taskBox.add(newTask);
 
     emit(
       state.copyWith(
@@ -43,7 +44,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     if (taskIndex != -1) {
       updatedTodoList.removeAt(taskIndex);
-      taskBox.deleteAt(taskIndex); // Görevi Hive'dan sil
+      taskBox.deleteAt(taskIndex);
     }
 
     emit(
@@ -59,7 +60,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     if (index != -1) {
       updatedTodoList[index] = event.newTask;
-      taskBox.putAt(index, event.newTask); // Hive'da görevi güncelle
+      taskBox.putAt(index, event.newTask);
     }
 
     emit(
@@ -92,5 +93,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void _loadTasks(LoadTasksEvent event, Emitter<TaskState> emit) {
     List<Task> tasks = taskBox.values.toList();
     emit(state.copyWith(todoList: tasks));
+  }
+
+  void _searchTasks(SearchTasksEvent event, Emitter<TaskState> emit) {
+    List<Task> searchResults = state.todoList
+        .where((task) =>
+            task.title.toLowerCase().contains(event.query.toLowerCase()))
+        .toList();
+
+    emit(state.copyWith(searchResults: searchResults));
   }
 }

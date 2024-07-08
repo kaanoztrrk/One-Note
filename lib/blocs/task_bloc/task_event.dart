@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../model/category_model/category_model.dart';
-import '../../model/task_model/task_model.dart';
+import '../../data/src/model/task_model/task_model.dart';
 
 abstract class TaskEvent extends Equatable {
   const TaskEvent();
@@ -44,3 +43,12 @@ class UpdateToDoEvent extends TaskEvent {
 }
 
 class LoadTasksEvent extends TaskEvent {}
+
+class SearchTasksEvent extends TaskEvent {
+  final String query;
+
+  const SearchTasksEvent(this.query);
+
+  @override
+  List<Object> get props => [query];
+}

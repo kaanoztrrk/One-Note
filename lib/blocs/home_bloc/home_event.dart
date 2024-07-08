@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:one_note/model/task_model/task_model.dart';
+import 'package:one_note/data/src/model/task_model/task_model.dart';
 
-import '../../model/category_model/category_model.dart';
+import '../../data/src/model/category_model/category_model.dart';
 
 abstract class HomeEvent extends Equatable {
   const HomeEvent();
@@ -29,7 +29,7 @@ class CreateCategoryEvent extends HomeEvent {
   final List<String> tagList;
   final double isCompletedValue;
 
-  CreateCategoryEvent({
+  const CreateCategoryEvent({
     required this.title,
     required this.subTitle,
     required this.checkList,
@@ -41,12 +41,22 @@ class CreateCategoryEvent extends HomeEvent {
 class DeleteCategoryEvent extends HomeEvent {
   final CategoryModel category;
 
-  DeleteCategoryEvent({required this.category});
+  const DeleteCategoryEvent({required this.category});
 }
 
 class UpdateCategoryEvent extends HomeEvent {
   final CategoryModel oldCategory;
   final CategoryModel newCategory;
 
-  UpdateCategoryEvent({required this.oldCategory, required this.newCategory});
+  const UpdateCategoryEvent({required this.oldCategory, required this.newCategory});
+}
+
+class ChangeCheckBoxEvent extends HomeEvent {
+  final bool isChecked;
+  final Task task;
+
+  const ChangeCheckBoxEvent({
+    required this.isChecked,
+    required this.task,
+  });
 }

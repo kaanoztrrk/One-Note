@@ -15,7 +15,7 @@ class ViListLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemCount: itemCount,
       shrinkWrap: true,
       padding: EdgeInsets.zero,
