@@ -71,21 +71,16 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _changeCheckBox(ChangeCheckBoxEvent event, Emitter<TaskState> emit) {
-    // Find the index of the task in the list
     int index = state.todoList.indexWhere((task) => task == event.task);
 
     if (index != -1) {
-      // Create a copy of the task with updated isChecked value
       Task updatedTask = event.task.copyWith(isChecked: event.isChecked);
 
-      // Replace the task at the found index with the updated task
       List<Task> updatedTodoList = List.from(state.todoList);
       updatedTodoList[index] = updatedTask;
 
-      // Update the task in Hive storage
       taskBox.putAt(index, updatedTask);
 
-      // Emit the updated state
       emit(state.copyWith(todoList: updatedTodoList));
     }
   }

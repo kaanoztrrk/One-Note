@@ -1,7 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:one_note/Util/Constant/colors.dart';
+import 'package:one_note/Util/Constant/sizes.dart';
+import 'package:one_note/common/widget/auth/login/login_header.dart';
 import 'package:one_note/core/locator/locator.dart';
 
 import '../../blocs/auth_blocs/sign_in_bloc/sign_in_bloc.dart';
@@ -33,42 +34,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
-          child: Stack(
+          child: Column(
             children: [
-              Align(
-                alignment: const AlignmentDirectional(20, -1.2),
-                child: Container(
-                  height: MediaQuery.of(context).size.width,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.tertiary),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(-2.7, -1.2),
-                child: Container(
-                  height: MediaQuery.of(context).size.width / 1.3,
-                  width: MediaQuery.of(context).size.width / 1.3,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.secondary),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(2.7, -1.2),
-                child: Container(
-                  height: MediaQuery.of(context).size.width / 1.3,
-                  width: MediaQuery.of(context).size.width / 1.3,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Theme.of(context).colorScheme.primary),
-                ),
-              ),
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 100.0, sigmaY: 100.0),
-                child: Container(),
-              ),
+              const Expanded(
+                  child: ViLoginHeader(
+                      title: "Hello Again!",
+                      subtitle: "Wellcome back you're been missed")),
+              const SizedBox(height: ViSizes.lg * 2),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: SizedBox(
@@ -83,6 +55,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                               .colorScheme
                               .onBackground
                               .withOpacity(0.5),
+                          indicatorColor: AppColors.primary,
                           labelColor:
                               Theme.of(context).colorScheme.onBackground,
                           tabs: const [

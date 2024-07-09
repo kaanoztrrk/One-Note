@@ -14,22 +14,27 @@ import '../../data/repositories/firebase_user_repository.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupLocator() async {
-  // Registering FirebaseUserRepo as UserRepository
   getIt.registerLazySingleton<UserRepository>(() => FirebaseUserRepo());
 
-  // Registering AuthenticationBloc with FirebaseUserRepo
   getIt.registerLazySingleton<AuthenticationBloc>(
-    () => AuthenticationBloc(userRepository: getIt<UserRepository>()),
+    () => AuthenticationBloc(
+      userRepository: getIt<UserRepository>(),
+    ),
   );
   getIt.registerLazySingleton<SignInBloc>(
-    () => SignInBloc(userRepository: getIt<UserRepository>()),
+    () => SignInBloc(
+      userRepository: getIt<UserRepository>(),
+    ),
   );
   getIt.registerLazySingleton<SignUpBloc>(
-    () => SignUpBloc(userRepository: getIt<UserRepository>()),
+    () => SignUpBloc(
+      userRepository: getIt<UserRepository>(),
+    ),
   );
 
-  // Registering other Blocs
-  getIt.registerLazySingleton<TaskBloc>(() => TaskBloc());
+  getIt.registerLazySingleton<TaskBloc>(
+    () => TaskBloc(),
+  );
 
   getIt.registerSingleton<HomeBloc>(
     HomeBloc(

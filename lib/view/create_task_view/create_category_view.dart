@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_note/Util/Constant/colors.dart';
@@ -41,7 +43,6 @@ class _CreateCategoryTaskViewState extends State<CreateCategoryTaskView> {
           title: "Create Task",
           heigth: ViDeviceUtils.getScreenHeigth(context) * 0.08,
           onTap: () {
-            print('Added Categories: $_tags');
             BlocProvider.of<HomeBloc>(context).add(CreateCategoryEvent(
                 title: titleController.text,
                 subTitle: subTitleController.text,

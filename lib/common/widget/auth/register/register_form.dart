@@ -25,19 +25,14 @@ class _ViSignupFormState extends State<ViSignupForm> {
     final TextEditingController userName = TextEditingController();
     final TextEditingController email = TextEditingController();
     final TextEditingController password = TextEditingController();
-    bool signUpRequired = false;
 
     return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state is SignUpSuccess) {
-          setState(() {
-            signUpRequired = false;
-          });
+          setState(() {});
           // context.pop();
         } else if (state is SignUpProcess) {
-          setState(() {
-            signUpRequired = true;
-          });
+          setState(() {});
         } else if (state is SignUpFailure) {
           return;
         }

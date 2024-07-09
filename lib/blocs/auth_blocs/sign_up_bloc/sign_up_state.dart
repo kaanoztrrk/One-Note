@@ -1,17 +1,54 @@
 import 'package:equatable/equatable.dart';
 
-sealed class SignUpState extends Equatable {
-  const SignUpState();
+abstract class SignUpState extends Equatable {
+  final bool obscurePassword;
+  final String? message;
+
+  const SignUpState({this.obscurePassword = true, this.message});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [];
+  List<Object> get props => [obscurePassword, message ?? ''];
+
+  SignUpState copyWith({bool? obscurePassword, String? message});
 }
 
-final class SignUpInitial extends SignUpState {}
+class SignUpInitial extends SignUpState {
+  const SignUpInitial({super.obscurePassword});
 
-class SignUpSuccess extends SignUpState {}
+  @override
+  SignUpInitial copyWith({bool? obscurePassword, String? message}) {
+    return SignUpInitial(
+      obscurePassword: obscurePassword ?? this.obscurePassword,
+    );
+  }
+}
 
-class SignUpFailure extends SignUpState {}
+class SignUpProcess extends SignUpState {
+  const SignUpProcess() : super();
 
-class SignUpProcess extends SignUpState {}
+  @override
+  SignUpProcess copyWith({bool? obscurePassword, String? message}) {
+    return const SignUpProcess();
+  }
+}
+
+class SignUpSuccess extends SignUpState {
+  const SignUpSuccess() : super();
+
+  @override
+  SignUpSuccess copyWith({bool? obscurePassword, String? message}) {
+    return const SignUpSuccess();
+  }
+}
+
+class SignUpFailure extends SignUpState {
+  const SignUpFailure({super.message, super.obscurePassword});
+
+  @override
+  SignUpFailure copyWith({bool? obscurePassword, String? message}) {
+    return SignUpFailure(
+      obscurePassword: obscurePassword ?? this.obscurePassword,
+      message: message ?? this.message,
+    );
+  }
+}

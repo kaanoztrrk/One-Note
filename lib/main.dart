@@ -28,5 +28,6 @@ void main() async {
   await setupLocator();
 
   Bloc.observer = SimpleBlocObserver();
+
   runApp(const App());
 }

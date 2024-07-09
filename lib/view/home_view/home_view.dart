@@ -14,6 +14,7 @@ import 'package:one_note/common/widget/layout/list_layout.dart';
 import 'package:one_note/core/locator/locator.dart';
 import 'package:one_note/blocs/home_bloc/home_bloc.dart';
 import 'package:one_note/core/routes/routes.dart';
+
 import '../../blocs/auth_blocs/sign_in_bloc/sign_in_event.dart';
 import '../../blocs/auth_blocs/sign_in_bloc/sign_in_state.dart';
 import 'widget/profile_Image_chip.dart';
@@ -61,7 +62,7 @@ class HomeView extends StatelessWidget {
                 return AppBarActionButton(
                   icon: Iconsax.category,
                   onTap: () {
-                    context.read<SignInBloc>().add(const SignOutRequired());
+                    context.read<SignInBloc>().add(SignOutRequired());
                   },
                 );
               },
@@ -123,6 +124,7 @@ class HomeView extends StatelessWidget {
                             BlocProvider.of<HomeBloc>(context)
                                 .add(DeleteCategoryEvent(category: category));
                           },
+                          onDone: () {},
                         );
                       },
                     ),

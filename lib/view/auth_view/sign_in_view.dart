@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:one_note/Util/Constant/sizes.dart';
 import 'package:one_note/blocs/auth_blocs/sign_in_bloc/sign_in_event.dart';
+import 'package:one_note/common/widget/button/classic_button.dart';
 
 import '../../Util/Constant/text_strings.dart';
 import '../../Util/validators/validationHelpers.dart';
@@ -95,34 +97,17 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             const SizedBox(height: 20),
             !signInRequired
-                ? SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    child: TextButton(
-                      onPressed: () {
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: ViSizes.md),
+                    child: ViClassicButton(
+                      heigth: 65,
+                      title: "Sign In",
+                      onTap: () {
                         if (_formKey.currentState!.validate()) {
                           context.read<SignInBloc>().add(SignInRequired(
                               emailController.text, passwordController.text));
                         }
                       },
-                      style: TextButton.styleFrom(
-                          elevation: 3.0,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(60))),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 25, vertical: 5),
-                        child: Text(
-                          'Sign In',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
                     ),
                   )
                 : const CircularProgressIndicator(),

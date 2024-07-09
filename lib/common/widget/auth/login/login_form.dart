@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -26,10 +25,7 @@ class _ViLoginFormState extends State<ViLoginForm> {
     final passwordController = TextEditingController();
     final emailController = TextEditingController();
     final formKey = GlobalKey<FormState>();
-    bool signInRequired = false;
-    IconData iconPassword = CupertinoIcons.eye_fill;
     bool obscurePassword = true;
-    String? errorMsg;
     return Form(
       key: formKey,
       child: Padding(
@@ -62,10 +58,7 @@ class _ViLoginFormState extends State<ViLoginForm> {
                     setState(() {
                       obscurePassword = !obscurePassword;
                       if (obscurePassword) {
-                        iconPassword = CupertinoIcons.eye_fill;
-                      } else {
-                        iconPassword = CupertinoIcons.eye_slash_fill;
-                      }
+                      } else {}
                     });
                   },
                   icon: const Icon(Iconsax.eye),

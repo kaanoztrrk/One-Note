@@ -19,7 +19,7 @@ class TaskState extends Equatable {
       todoList: [],
       searchResults: [],
       isChecked: false,
-      taskBgColor: 0xFFFFFFFF, // Varsayılan renk beyaz
+      taskBgColor: 0xFFFFFFFF,
     );
   }
 

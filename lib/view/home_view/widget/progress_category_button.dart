@@ -48,7 +48,7 @@ class ViProgressCategoryButton extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  "12 Tasks",
+                  "0 Tasks",
                   style: ViTextTheme.ligthTextTheme.labelSmall,
                   textAlign: TextAlign.center,
                 ),
