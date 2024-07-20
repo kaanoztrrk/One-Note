@@ -74,27 +74,13 @@ class HomeView extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: ViSizes.defaultSpace) +
                   const EdgeInsets.only(top: ViSizes.defaultSpace),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              BlocBuilder<HomeBloc, HomeState>(
-                builder: (context, state) {
-                  return ViGridLayout(
-                    mainAxisExtent: 90,
-                    itemCount: state.status.length,
-                    itemBuilder: (context, index) {
-                      return ViProgressCategoryButton(
-                        status: state.status[index],
-                      );
-                    },
-                  );
-                },
-              ),
-              const SizedBox(height: ViSizes.spaceBtwSections / 2),
-              const ViTitle(title: ViTexts.recendTask),
               BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   if (state.categoryList.isEmpty) {
                     return ViEmptyScreen(
-                      showRotateArrow: true,
+                      showRotateArrow: false,
                       image: ViImages().emtyScreen,
                       title: "To-Do List Empty",
                       subtitle: "You Can add a task from the button below",

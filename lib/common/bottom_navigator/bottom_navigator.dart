@@ -35,28 +35,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   context.read<OneNoteBloc>().add(const ChangeTab(1));
                 },
               ),
-              SizedBox(
-                height: 56.0,
-                width: 56.0,
-                child: FloatingActionButton(
-                  shape: const CircleBorder(),
-                  onPressed: () => context.push(Routes.create_task),
-                  backgroundColor: AppColors.primary,
-                  child: const Icon(Icons.add, color: Colors.white),
-                ),
-              ),
               _buildIconButton(
-                icon: Iconsax.clipboard_tick,
+                icon: Iconsax.user,
                 isSelected: state is TabChangedState && state.tabIndex == 2,
                 onTap: () {
                   context.read<OneNoteBloc>().add(const ChangeTab(2));
-                },
-              ),
-              _buildIconButton(
-                icon: Iconsax.user,
-                isSelected: state is TabChangedState && state.tabIndex == 3,
-                onTap: () {
-                  context.read<OneNoteBloc>().add(const ChangeTab(3));
                 },
               ),
             ],
